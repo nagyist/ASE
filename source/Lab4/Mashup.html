@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="" data-ng-app="Mashup">
+<head>
+  <meta t="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yahoo Finance mashup</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+
+    
+  <link rel="stylesheet" href="css/main.css">  
+    
+    <style>
+     #map-canvas {
+    width: 650px;
+    height: 450px;
+}
+          body {
+            font: 15px 'Cambria', Tahoma, Verdana, sans-serif;
+    color: #330066;
+   
+        }
+        #chart {
+            height:300px;
+            width:750px;
+            float=left;
+        }
+       
+        
+      .weatherModule {
+    background:#f2f2f2;
+    height:150px;
+    width:250px;
+    border: 1px dashed #ccc;
+    padding: 1em;
+}
+  .weatherModule1 {
+    background:#f2f2f2;
+    height:150px;
+    width:250px;
+    border: 1px dashed #ccc;
+    padding: 1em;
+}
+        .input {
+            align:center;
+        }
+
+
+
+.currentConditions {
+    float: left;
+}
+.weatherModule {
+    padding: 1em;
+}
+
+.currentIcon {
+    float: left;
+    margin: 0 .75em;
+}
+
+    </style>
+</head>
+
+<body >
+<h1 align="center">Stock Services</h1>
+    <h3 id = 'header' align="center"></h3>  
+<div class="wrapp" ng-controller="stockmashup">
+		
+		<div>&nbsp;&nbsp;</div>
+         <div class="row">
+		 <div id="header" width="100%">
+					<embed src="quotes.html"/>
+      <!-- Content will be inserted by jQuery from header.html -->
+    </div>
+             <br>
+             <h2 align="center">View the Stock chart for the company you desire</h2>
+             <br>
+            <div class="input">
+			  <label>Company</label>&nbsp;
+             <input type="text"  ng-model="cid" id="cid" /> </div>
+             <br><br>
+                <button id="btn" ng-click="viewChart();">
+                    Get Finance Chart
+                </button>
+                 <br/></br>
+    <div id="chart">
+				<p> Finance chart </p>
+        <img align="center" src="{{icon}}" height="300" width="700"></div>
+    <br><br>
+    <h2>How are we doing?</h2>
+<a href="https://twitter.com/intent/tweet?screen_name=yahoofinance" class="twitter-mention-button" data-lang="en">Tweet to @yahoofinance</a></div>
+		
+    
+
+
+            </div>			
+        </div>
+    </body>
+</html>
+
+
+<script>
+angular.module('Mashup', [])
+.controller('stockmashup', function ($scope,$http) {
+    $scope.initialize = function () {
+          
+		  
+     };
+    $scope.viewChart = function () {
+        var url = 'http://chart.finance.yahoo.com/z?s='+document.getElementById('cid').value+'&t=12m&q=l&z=l&p=m50,m200'
+	$scope.icon = url;
+       $.get("quotes.html", function(data) {
+    $("#header").html(data);
+  });
+    };     
+
+
+});   
+      window.onload = function() {
+        document.getElementById('header').innerHTML = "Welcome,  "+localStorage.userName +"!";
+        
+    };
+                
+
+</script>
