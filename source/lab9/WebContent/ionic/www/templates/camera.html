@@ -1,0 +1,20 @@
+<ion-view view-title="camera" name="camera-view">
+  <ion-content class="padding">
+      <div class="bar bar-header bar-calm">
+  <h1 class="title">Session</h1>
+</div> <br> <br>
+      <div class="list list-inset">
+        
+        
+        
+   
+      <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">        
+    <button class="button button-positive" ng-click="takePicture()">
+      <i class="icon ion-camera"></i>
+    </button>
+  </div>
+          
+         
+  </ion-content>
+</ion-view>

@@ -1,0 +1,8 @@
+applications:
+- path: lab9.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: lab9su
+  host: lab9su
+  disk_quota: 512M
